@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ENIGMA | Short Film Festival</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">  
+
+  <style>
+    /* Base Navbar Styles */
+    .enigma-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      background: rgba(10, 0, 20, 0.98);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-left {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      z-index: 1002;
+    }
+
+    .nav-left img {
+      height: 50px;
+      width: auto;
+    }
+
+    .nav-center {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+
+    .nav-center li a {
+      color: #d4af37;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .nav-center li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: #d4af37;
+      transition: width 0.3s;
+    }
+
+    .nav-center li a:hover::after {
+      width: 100%;
+    }
+
+    .nav-center li a:hover {
+      color: #fff;
+    }
+
+    /* Hide mobile register button on desktop */
+    .mobile-register {
+      display: none;
+    }
+
+    .nav-right {
+      z-index: 1002;
+    }
+
+    .register-btn {
+      padding: 10px 25px;
+      background: linear-gradient(135deg, #d4af37 0%, #f2d06b 100%);
+      color: #0a0014;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    .register-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+    }
+    
+    /* Hamburger Menu Styles */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 5px;
+      z-index: 1002;
+      background: none;
+      border: none;
+    }
+    
+    .hamburger span {
+      width: 30px;
+      height: 3px;
+      background-color: #d4af37;
+      margin: 4px 0;
+      transition: 0.4s;
+      border-radius: 3px;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(-45deg) translate(-7px, 7px);
+      background-color: #fff;
+    }
+    
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(45deg) translate(-7px, -7px);
+      background-color: #fff;
+    }
+
+    /* Mobile Navigation - Beautiful Full Screen Overlay */
+    @media (max-width: 992px) {
+      body {
+        padding-top: 70px;
+      }
+
+      .enigma-navbar {
+        padding: 12px 5%;
+        position: fixed;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-left img {
+        height: 40px;
+      }
+
+      /* Hide desktop nav elements */
+      .nav-center {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(135deg, #0a0014 0%, #1a0a2e 50%, #0a0014 100%);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        padding: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+        overflow-y: auto;
+      }
+      
+      .nav-center.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+      
+      .nav-center li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s ease;
+      }
+
+      .nav-center.active li {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .nav-center.active li:nth-child(1) { transition-delay: 0.1s; }
+      .nav-center.active li:nth-child(2) { transition-delay: 0.15s; }
+      .nav-center.active li:nth-child(3) { transition-delay: 0.2s; }
+      .nav-center.active li:nth-child(4) { transition-delay: 0.25s; }
+      .nav-center.active li:nth-child(5) { transition-delay: 0.3s; }
+      .nav-center.active li:nth-child(6) { transition-delay: 0.35s; }
+      .nav-center.active li:nth-child(7) { transition-delay: 0.4s; }
+      .nav-center.active li:nth-child(8) { transition-delay: 0.45s; }
+      
+      .nav-center li a {
+        display: block;
+        padding: 20px 40px;
+        font-size: 24px;
+        font-weight: 600;
+        width: 100%;
+        color: #d4af37;
+        letter-spacing: 1px;
+      }
+
+      .nav-center li a::after {
+        display: none;
+      }
+
+      .nav-center li a:hover {
+        color: #fff;
+        background: rgba(212, 175, 55, 0.1);
+      }
+
+      /* Mobile register button styling */
+      .mobile-register {
+        display: block !important;
+        margin-top: 30px;
+        padding: 0 40px;
+      }
+
+      .mobile-register a {
+        background: linear-gradient(135deg, #d4af37 0%, #f2d06b 100%);
+        color: #0a0014 !important;
+        border-radius: 50px;
+        font-size: 20px;
+        padding: 18px 50px !important;
+        box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+        display: inline-block;
+      }
+
+      .mobile-register a:hover {
+        background: linear-gradient(135deg, #f2d06b 0%, #d4af37 100%);
+        transform: scale(1.05);
+      }
+
+      /* Hide desktop register button */
+      .nav-right {
+        display: none;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .nav-center li a {
+        font-size: 20px;
+        padding: 18px 30px;
+      }
+
+      .mobile-register a {
+        font-size: 18px;
+        padding: 15px 40px !important;
+      }
+    }
+
+    /* Team Lumora Section Responsive Styles */
+    @media (max-width: 992px) {
+      #about-us {
+        padding: 60px 20px !important;
+      }
+
+      .about-grid {
+        width: 100% !important;
+        padding: 0 !important;
+      }
+
+      .staff-advisors-section {
+        margin-bottom: 40px !important;
+      }
+
+      .staff-advisors-row {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 30px !important;
+      }
+
+      .team-row {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 30px !important;
+        margin: 20px 0 !important;
+      }
+
+      .card {
+        width: 100% !important;
+        max-width: 320px !important;
+        margin: 0 !important;
+      }
+
+      .card img {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 350px !important;
+        object-fit: cover !important;
+      }
+
+      .card-content h4 {
+        font-size: 1.3rem !important;
+      }
+
+      .card-content p {
+        font-size: 1rem !important;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .card {
+        max-width: 280px !important;
+      }
+
+      .card-content h4 {
+        font-size: 1.1rem !important;
+      }
+
+      .card-content p {
+        font-size: 0.9rem !important;
+      }
+    }
+    
+
+    /* Responsive adjustments for various sections */
+    @media (max-width: 768px) {
+      /* Hero Section */
+      .hero-content h1 {
+        font-size: 3rem !important;
+      }
+      
+      .hero-content h3 {
+        font-size: 1.5rem !important;
+      }
+      
+      .hero-content p {
+        font-size: 1rem !important;
+      }
+
+      /* Navigation logos */
+      .nav-left img {
+        max-width: 40px !important;
+        height: auto;
+      }
+
+      /* About Section */
+      .about-content-wrapper {
+        flex-direction: column !important;
+      }
+      
+      .about-visual,
+      .about-text-content {
+        width: 100% !important;
+      }
+
+      /* Streaming Section */
+      .cinema-features-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+
+      /* Awards Section */
+      .tier-cards {
+        flex-direction: column !important;
+      }
+      
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+
+      /* Team Section */
+      .team-row {
+        flex-direction: column !important;
+        align-items: center !important;
+      }
+      
+      .card {
+        width: 90% !important;
+        max-width: 300px !important;
+        margin: 15px 0 !important;
+      }
+
+      /* Contact Section */
+      .contact-info-grid {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+      }
+
+      /* Film Strip */
+      .film-frame {
+        min-width: 200px !important;
+      }
+
+      /* Clapperboard */
+      .tamil-title {
+        font-size: 1.5rem !important;
+      }
+      
+      .english-subtitle {
+        font-size: 1.2rem !important;
+      }
+
+      /* Section titles */
+      .section-title {
+        font-size: 2rem !important;
+      }
+
+      /* Theater seats */
+      .theater-seats {
+        overflow-x: auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      /* Extra small devices */
+      .hero-content h1 {
+        font-size: 2.5rem !important;
+      }
+      
+      .btn-gold {
+        padding: 10px 20px !important;
+        font-size: 14px !important;
+      }
+
+      .category-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .nav-left img {
+        max-width: 35px !important;
+      }
+
+      .film-frame {
+        min-width: 150px !important;
+      }
+    }
+
+    /* Overlay for mobile menu */
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+    }
+
+    .nav-overlay.active {
+      display: block;
+    }
+  </style>
+
+</head>
+
+<body>
+  
+  <script>
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      const loader = document.getElementById("loading-screen");
+      if (loader) {
+        loader.classList.add("hide");
+      }
+    }, 3000); // loader duration (3 seconds)
+  });
+</script>
+
+
+  <!-- LOADING SCREEN -->
+<div id="loading-screen">
+  <div class="film-strip-loading"></div>
+  <div class="particles-bg" id="loading-particles"></div>
+  <div class="light-rays"></div>
+  <div class="loading-spotlight"></div>
+  
+  <div class="trophy-container">
+    <img src="images/TROPHY.png" alt="ENIGMA Trophy" class="trophy-image">
+  </div>
+  
+  <div class="loading-content">
+    <h1 class="festival-name">ENIGMA</h1>
+    <p class="festival-tagline"># TAKE-III</p>
+    <p class="loading-message">🎬 Preparing the silver screen experience...</p>
+  </div>
+</div>
+
+<!-- TOP NAVBAR -->
+<nav class="enigma-navbar">
+  <div class="nav-left">
+    <img src="images/cit.png" alt="CIT Logo">
+    <img src="images/FC_logo.png" alt="Film Club Logo">
+  </div>
+  
+  <!-- Hamburger Menu -->
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  
+  <ul class="nav-center" id="navMenu">
+    <li><a href="#vanta-bg">Home</a></li>
+    <li><a href="#about-enigma">About</a></li>
+    <li><a href="#about-us">Team Lumora</a></li>
+    <li><a href="#awards">Prizes</a></li>
+    <li><a href="#sponsors">Sponsors</a></li>
+    <li><a href="#contact">Contact Us</a></li>
+    <li><a href="rules.html">Rules</a></li>
+    <li class="mobile-register"><a href="rules.html">Register Now →</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="rules.html" class="register-btn">Register Now →</a>
+  </div>
+</nav>
+
+<!-- Scroll Progress Bar -->
+<div class="scroll-progress"></div>
+
+<!-- Hero Section -->
+<div id="vanta-bg">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>ENIGMA</h1>
+    <h3># TAKE-III</h3>
+    <p class="mt-3">An Echo of Cinema</p>
+    <p class="mt-4">Where stories rise, visions compete, and filmmakers step closer to the silver screen.</p>
+    <a href="#about-enigma" class="btn btn-gold mt-4">Explore Festival</a>
+  </div>
+</div>
+
+<!-- About Section -->
+<section id="about-enigma">
+  <div class="about-container container">
+    <h2 class="section-title">ABOUT ENIGMA</h2>
+    
+    <div class="about-content-wrapper">
+      <!-- Left Side: Visual Elements -->
+      <div class="about-visual">
+        <div class="floating-elements">
+          <div class="float-item"></div>
+          <div class="float-item"></div>
+          <div class="float-item"></div>
+          <div class="float-item"></div>
+        </div>
+        
+        <div class="film-reel"></div>
+        
+        <div class="center-badge">
+          <div class="badge-text">7</div>
+          <div class="badge-subtext">TOP FILMS</div>
+        </div>
+      </div>
+
+      <!-- Right Side: Content Cards -->
+      <div class="about-text-content">
+        <div class="about-card">
+          <div class="card-icon">🎬</div>
+          <h3>State-Level Festival</h3>
+          <p>ENIGMA is a state-level short film festival by the Film Club of CIT, created for cinema patriots and aspiring filmmakers with dreams of the silver screen.</p>
+        </div>
+
+        <div class="about-card">
+          <div class="card-icon">🏆</div>
+          <h3>Top 7 Screening</h3>
+          <p>The top 7 short films will be screened on the main stage, with the best three films winning prestigious awards, alongside 10+ special awards honoring excellence.</p>
+        </div>
+
+        <div class="about-card">
+          <div class="card-icon">🌟</div>
+          <h3>Platform for Talent</h3>
+          <p>Open to filmmakers across Tamil Nadu, ENIGMA provides a powerful platform for emerging talents to showcase their vision and contribute to independent cinema.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Streaming Section - Kollywood Theme -->
+<section id="streaming">
+  <div class="container">
+
+    
+    <!-- Clapperboard Header -->
+    <div class="clapperboard-header">
+      <div class="clapper-top">
+        <div class="clapper-stripes"></div>
+      </div>
+      <div class="clapper-board">
+        <h2 class="tamil-title">ஒரு Screen. 7 கதை.</h2>
+        <h3 class="english-subtitle">ONE SCREEN. SEVEN STORIES.</h3>
+        <div class="film-details">
+          <span>🎬 ENIGMA TAKE: III</span>
+          <span>📍CIT AUDITORIUM</span>
+          <span>🎭 LIVE EVENT</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spotlight Animation -->
+    <div class="spotlight-container">
+      <div class="spotlight spotlight-1"></div>
+      <div class="spotlight spotlight-2"></div>
+    </div>
+
+    <p class="streaming-text text-center mt-5">
+      <span class="kollywood-tagline">"LIGHTS, CAMERA, ACTION!"</span><br>
+      The top <strong>7 exceptional short films</strong> selected by our esteemed jury will be
+      <span class="highlight">screened live on the silver screen</span> during the ENIGMA festival.
+      Experience the magic of Tamil independent cinema on one stage, seven compelling stories!
+    </p>
+
+    <!-- Film Reel Decoration -->
+    <div class="film-reel-decoration">
+      <div class="reel-left"></div>
+      <div class="reel-right"></div>
+    </div>
+
+    <div class="row mt-5 justify-content-center">
+      <div class="col-md-12">
+        <!-- Cinema Features Grid -->
+        <div class="cinema-features-grid">
+          
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-number">01</div>
+            <div class="feature-icon">🎬</div>
+            <div class="feature-content">
+              <h3>Grand Screening Open</h3>
+              <p>The festival begins with the live screening of the Top 7 shortlisted Tamil short films on the main stage</p>
+            </div>
+            <div class="feature-shine"></div>
+          </div>
+
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-number">02</div>
+            <div class="feature-icon">🏆</div>
+            <div class="feature-content">
+              <h3>Official Top 7 Selection</h3>
+              <p>Seven outstanding short films carefully selected by the jury for their storytelling and cinematic quality</p>
+            </div>
+            <div class="feature-shine"></div>
+          </div>
+
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-number">03</div>
+            <div class="feature-icon">🎤</div>
+            <div class="feature-content">
+              <h3>Director Introductions</h3>
+              <p>Each filmmaker introduces their short film, sharing insights before the screening begins</p>
+            </div>
+            <div class="feature-shine"></div>
+          </div>
+
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="feature-number">04</div>
+            <div class="feature-icon">👥</div>
+            <div class="feature-content">
+              <h3>Jury & Audience Viewing</h3>
+              <p>Experience the films together with jury members and a live, engaged audience</p>
+            </div>
+            <div class="feature-shine"></div>
+          </div>
+
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+            <div class="feature-number">05</div>
+            <div class="feature-icon">🎭</div>
+            <div class="feature-content">
+              <h3>Cinematic Storytelling</h3>
+              <p>A showcase of emotion, craft, and authentic Kollywood-inspired narratives in short-film format</p>
+            </div>
+            <div class="feature-shine"></div>
+          </div>
+
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+            <div class="feature-number">06</div>
+            <div class="feature-icon">⭐</div>
+            <div class="feature-content">
+              <h3>Final Spotlight Screening</h3>
+              <p>The most anticipated screening moment before awards and recognitions are announced</p>
+            </div>
+            <div class="feature-shine"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Theater Seats Illustration -->
+    <div class="theater-seats">
+      <div class="seat-row">
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat occupied"></div>
+        <div class="seat occupied"></div>
+        <div class="seat occupied"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+      </div>
+    </div>
+
+    <p class="text-center mt-5 note-text kollywood-note">
+      <span class="ticker-text">🎞️ வெற்றி திரைப்படங்கள் மட்டும் திரையிடப்படும் 🎞️</span><br>
+      <em>*Only the top 7 shortlisted films will be screened during the event</em>
+    </p>
+
+    <!-- Dynamic Film Strip with Posters -->
+    <div class="dynamic-film-strip">
+      <div class="film-strip-track">
+        <!-- Film Poster 1 -->
+        <div class="film-frame">
+          <div class="film-perforation"></div>
+          <div class="film-poster">
+            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=600&fit=crop" alt="Tamil Short Film">
+            <div class="film-overlay">
+              <span class="film-title">கதை 01</span>
+            </div>
+          </div>
+          <div class="film-perforation"></div>
+        </div>
+
+        <!-- Film Poster 2 -->
+        <div class="film-frame">
+          <div class="film-perforation"></div>
+          <div class="film-poster">
+            <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=400&h=600&fit=crop" alt="Tamil Short Film">
+            <div class="film-overlay">
+              <span class="film-title">கதை 02</span>
+            </div>
+          </div>
+          <div class="film-perforation"></div>
+        </div>
+
+        <!-- Film Poster 3 -->
+        <div class="film-frame">
+          <div class="film-perforation"></div>
+          <div class="film-poster">
+            <img src="https://images.unsplash.com/photo-1574267432644-f74f3ceb56e7?w=400&h=600&fit=crop" alt="Tamil Short Film">
+            <div class="film-overlay">
+              <span class="film-title">கதை 03</span>
+            </div>
+          </div>
+          <div class="film-perforation"></div>
+        </div>
+
+        <!-- Film Poster 4 -->
+        <div class="film-frame">
+          <div class="film-perforation"></div>
+          <div class="film-poster">
+            <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=400&h=600&fit=crop" alt="Tamil Short Film">
+            <div class="film-overlay">
+              <span class="film-title">கதை 04</span>
+            </div>
+          </div>
+          <div class="film-perforation"></div>
+        </div>
+
+        <!-- Film Poster 5 -->
+        <div class="film-frame">
+          <div class="film-perforation"></div>
+          <div class="film-poster">
+            <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&h=600&fit=crop" alt="Tamil Short Film">
+            <div class="film-overlay">
+              <span class="film-title">கதை 05</span>
+            </div>
+          </div>
+          <div class="film-perforation"></div>
+        </div>
+
+        <!-- Film Poster 6 -->
+        <div class="film-frame">
+          <div class="film-perforation"></div>
+          <div class="film-poster">
+            <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&h=600&fit=crop" alt="Tamil Short Film">
+            <div class="film-overlay">
+              <span class="film-title">கதை 06</span>
+            </div>
+          </div>
+          <div class="film-perforation"></div>
+        </div>
+
+        <!-- Film Poster 7 -->
+        <div class="film-frame">
+          <div class="film-perforation"></div>
+          <div class="film-poster">
+            <img src="https://images.unsplash.com/photo-1512070679279-8988d32161be?w=400&h=600&fit=crop" alt="Tamil Short Film">
+            <div class="film-overlay">
+              <span class="film-title">கதை 07</span>
+            </div>
+          </div>
+          <div class="film-perforation"></div>
+        </div>
+
+        <!-- Duplicate for seamless loop -->
+        <div class="film-frame">
+          <div class="film-perforation"></div>
+          <div class="film-poster">
+            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=600&fit=crop" alt="Tamil Short Film">
+            <div class="film-overlay">
+              <span class="film-title">கதை 01</span>
+            </div>
+          </div>
+          <div class="film-perforation"></div>
+        </div>
+
+        <div class="film-frame">
+          <div class="film-perforation"></div>
+          <div class="film-poster">
+            <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=400&h=600&fit=crop" alt="Tamil Short Film">
+            <div class="film-overlay">
+              <span class="film-title">கதை 02</span>
+            </div>
+          </div>
+          <div class="film-perforation"></div>
+        </div>
+
+        <div class="film-frame">
+          <div class="film-perforation"></div>
+          <div class="film-poster">
+            <img src="https://images.unsplash.com/photo-1574267432644-f74f3ceb56e7?w=400&h=600&fit=crop" alt="Tamil Short Film">
+            <div class="film-overlay">
+              <span class="film-title">கதை 03</span>
+            </div>
+          </div>
+          <div class="film-perforation"></div>
+        </div>
+
+        <div class="film-frame">
+          <div class="film-perforation"></div>
+          <div class="film-poster">
+            <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=400&h=600&fit=crop" alt="Tamil Short Film">
+            <div class="film-overlay">
+              <span class="film-title">கதை 04</span>
+            </div>
+          </div>
+          <div class="film-perforation"></div>
+        </div>
+
+        <div class="film-frame">
+          <div class="film-perforation"></div>
+          <div class="film-poster">
+            <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&h=600&fit=crop" alt="Tamil Short Film">
+            <div class="film-overlay">
+              <span class="film-title">கதை 05</span>
+            </div>
+          </div>
+          <div class="film-perforation"></div>
+        </div>
+
+        <div class="film-frame">
+          <div class="film-perforation"></div>
+          <div class="film-poster">
+            <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&h=600&fit=crop" alt="Tamil Short Film">
+            <div class="film-overlay">
+              <span class="film-title">கதை 06</span>
+            </div>
+          </div>
+          <div class="film-perforation"></div>
+        </div>
+
+        <div class="film-frame">
+          <div class="film-perforation"></div>
+          <div class="film-poster">
+            <img src="https://images.unsplash.com/photo-1512070679279-8988d32161be?w=400&h=600&fit=crop" alt="Tamil Short Film">
+            <div class="film-overlay">
+              <span class="film-title">கதை 07</span>
+            </div>
+          </div>
+          <div class="film-perforation"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Chief Guest & Jury Section -->
+ <!--
+<section id="chief-guest">
+  <div class="container">
+    <h2 class="section-title">CHIEF GUEST & JURY</h2>
+    
+
+    <div class="chief-guest-wrapper">
+      <div class="guest-category-title">CHIEF GUEST</div>
+      <div class="guest-row chief-row">
+        <div class="guest-card chief-card">
+          <div class="guest-image-wrapper">
+            <img src="images/Blank.jpg" alt="Chief Guest">
+            <div class="guest-overlay"></div>
+          </div>
+          <div class="guest-info">
+            <h3>Name</h3>
+            <p class="guest-designation">Designation</p>
+            <p class="guest-films">ABT</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  -->
+
+  <!-- Special Guests -->
+   <!--   
+    <div class="special-guests-wrapper">
+      <div class="guest-category-title">SPECIAL GUESTS</div>
+      <div class="guest-row special-row">
+        <div class="guest-card">
+          <div class="guest-image-wrapper">
+            <img src="images/blank.jpg" alt="Special Guest">
+            <div class="guest-overlay"></div>
+          </div>
+          <div class="guest-info">
+            <h3>BName</h3>
+            <p class="guest-designation">Designation</p>
+            <p class="guest-films">ABT</p>
+          </div>
+        </div>
+        
+        <div class="guest-card">
+          <div class="guest-image-wrapper">
+            <img src="images/Blank.jpg" alt="Special Guest">
+            <div class="guest-overlay"></div>
+          </div>
+          <div class="guest-info">
+            <h3>Name</h3>
+            <p class="guest-designation">Designation</p>
+            <p class="guest-films">ABT</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  -->
+    <!-- Jury Members -->
+     <!--
+    <div class="jury-wrapper">
+      <div class="guest-category-title">JURY PANEL</div>
+      <div class="guest-row jury-row">
+        <div class="guest-card jury-card">
+          <div class="guest-image-wrapper">
+            <img src="images/jury-1.jpg" alt="Jury Member">
+            <div class="guest-overlay"></div>
+          </div>
+          <div class="guest-info">
+            <h3>Name</h3>
+            <p class="guest-designation">Designation</p>
+          </div>
+        </div>
+        
+        <div class="guest-card jury-card">
+          <div class="guest-image-wrapper">
+            <img src="images/jury-2.jpg" alt="Jury Member">
+            <div class="guest-overlay"></div>
+          </div>
+          <div class="guest-info">
+            <h3>Name</h3>
+            <p class="guest-designation">Designationr</p>
+          </div>
+        </div>
+        
+        <div class="guest-card jury-card">
+          <div class="guest-image-wrapper">
+            <img src="images/jury-3.jpg" alt="Jury Member">
+            <div class="guest-overlay"></div>
+          </div>
+          <div class="guest-info">
+            <h3>Name </h3>
+            <p class="guest-designation">Producer</p>
+          </div>
+        </div>
+        
+        <div class="guest-card jury-card">
+          <div class="guest-image-wrapper">
+            <img src="images/jury-4.jpg" alt="Jury Member">
+            <div class="guest-overlay"></div>
+          </div>
+          <div class="guest-info">
+            <h3>DIVYA NAIR</h3>
+            <p class="guest-designation">Actress</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<!-- Awards Section -->
+<section id="awards">
+  <div class="container">
+    <h2 class="section-title">AWARDS & RECOGNITION</h2>
+    
+    <!-- Top Tier Awards -->
+    <div class="awards-tier-wrapper">
+      <div class="awards-tier top-tier">
+        <div class="tier-label">GRAND PRIZES</div>
+        <div class="tier-cards">
+          <div class="award-card winner">
+            <div class="award-overlay"></div>
+            <div class="award-trophy">👑</div>
+            <div class="award-rank">WINNER</div>
+            <h3>Best Film</h3>
+            <div class="award-shine"></div>
+          </div>
+          
+          <div class="secondary-awards">
+            <div class="award-card runner">
+              <div class="award-overlay"></div>
+              <div class="award-trophy">🥈</div>
+              <div class="award-rank">RUNNER-UP</div>
+              <h3>Best Film</h3>
+              <div class="award-shine"></div>
+            </div>
+            
+            <div class="award-card special">
+              <div class="award-overlay"></div>
+              <div class="award-trophy">⭐</div>
+              <div class="award-rank">SPECIAL</div>
+              <h3>Recognition</h3>
+              <div class="award-shine"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Awards -->
+      <div class="awards-tier category-tier">
+        <div class="tier-label">CATEGORY EXCELLENCE</div>
+        <div class="tier-cards category-grid">
+          <div class="award-card category">
+            <div class="award-icon">🎭</div>
+            <h4>Best Actor</h4>
+          </div>
+          
+          <div class="award-card category">
+            <div class="award-icon">🎭</div>
+            <h4>Best Actress</h4>
+          </div>
+          
+          <div class="award-card category">
+            <div class="award-icon">🎬</div>
+            <h4>Best Director</h4>
+          </div>
+          
+          <div class="award-card category">
+            <div class="award-icon">✍️</div>
+            <h4>Best Writer</h4>
+          </div>
+          
+          <div class="award-card category">
+            <div class="award-icon">📖</div>
+            <h4>Best Story</h4>
+          </div>
+          
+          <div class="award-card category">
+            <div class="award-icon">🎥</div>
+            <h4>Best Cinematographer</h4>
+          </div>
+          
+          <div class="award-card category">
+            <div class="award-icon">🎵</div>
+            <h4>Best Music</h4>
+          </div>
+          
+          <div class="award-card category">
+            <div class="award-icon">✂️</div>
+            <h4>Best Editor</h4>
+          </div>
+          
+          <div class="award-card category">
+            <div class="award-icon">🌟</div>
+            <h4>Supporting Character</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Sponsors Section -->
+<!--
+<section id="sponsors">
+  <div class="container text-center">
+    <h2 class="section-title">OUR SPONSORS</h2>
+    <p class="sponsor-subtext">
+      Proudly supported by our partners who believe in independent cinema.
+    </p>
+    
+    <div class="sponsor-marquee">
+      <div class="sponsor-track">
+        <div class="sponsor-card">
+          <div class="sponsor-content">
+            <div class="sponsor-icon">🎬</div>
+            <div class="sponsor-text">PLATINUM SPONSOR</div>
+          </div>
+        </div>
+        
+        <div class="sponsor-card">
+          <div class="sponsor-content">
+            <div class="sponsor-icon">🎥</div>
+            <div class="sponsor-text">GOLD SPONSOR</div>
+          </div>
+        </div>
+        
+        <div class="sponsor-card">
+          <div class="sponsor-content">
+            <div class="sponsor-icon">🎞️</div>
+            <div class="sponsor-text">SILVER SPONSOR</div>
+          </div>
+        </div>
+        
+        <div class="sponsor-card">
+          <div class="sponsor-content">
+            <div class="sponsor-icon">🎪</div>
+            <div class="sponsor-text">MEDIA PARTNER</div>
+          </div>
+        </div>
+
+        <div class="sponsor-card">
+          <div class="sponsor-content">
+            <div class="sponsor-icon">📽️</div>
+            <div class="sponsor-text">TECH PARTNER</div>
+          </div>
+        </div>
+
+        <div class="sponsor-card">
+          <div class="sponsor-content">
+            <div class="sponsor-icon">🎭</div>
+            <div class="sponsor-text">CREATIVE PARTNER</div>
+          </div>
+        </div>
+      
+        
+       
+        <div class="sponsor-card">
+          <div class="sponsor-content">
+            <div class="sponsor-icon">🎬</div>
+            <div class="sponsor-text">PLATINUM SPONSOR</div>
+          </div>
+        </div>
+        
+        <div class="sponsor-card">
+          <div class="sponsor-content">
+            <div class="sponsor-icon">🎥</div>
+            <div class="sponsor-text">GOLD SPONSOR</div>
+          </div>
+        </div>
+        
+        <div class="sponsor-card">
+          <div class="sponsor-content">
+            <div class="sponsor-icon">🎞️</div>
+            <div class="sponsor-text">SILVER SPONSOR</div>
+          </div>
+        </div>
+        
+        <div class="sponsor-card">
+          <div class="sponsor-content">
+            <div class="sponsor-icon">🎪</div>
+            <div class="sponsor-text">MEDIA PARTNER</div>
+          </div>
+        </div>
+
+        <div class="sponsor-card">
+          <div class="sponsor-content">
+            <div class="sponsor-icon">📽️</div>
+            <div class="sponsor-text">TECH PARTNER</div>
+          </div>
+        </div>
+
+        <div class="sponsor-card">
+          <div class="sponsor-content">
+            <div class="sponsor-icon">🎭</div>
+            <div class="sponsor-text">CREATIVE PARTNER</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+-->
+<!-- About Us Section - FIXED STRUCTURE -->
+<section id="about-us">
+  <h2 class="section-title">TEAM LUMORA</h2>
+
+  <div class="about-grid">
+    
+  <div class="staff-advisors-section">
+
+  <div class="staff-advisors-row">
+    <div class="card advisor">
+      <img src="images/staffadvisor.jpg">
+      <div class="card-content">
+        <h4>Dr. V. G. Kalpana</h4>
+        <p>Staff Advisor</p>
+      </div>
+    </div>
+
+    <div class="card advisor">
+      <img src="images/Murugan.jpg">
+      <div class="card-content">
+        <h4>Dr. M. Murugan</h4>
+        <p>Staff Advisor</p>
+      </div>
+    </div>
+
+    <div class="card advisor">
+      <img src="images/Vasanthan.jpg">
+      <div class="card-content">
+        <h4>Mr. B. Vasanthan</h4>
+        <p>Staff Advisor</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Row 2: Event Chairman -->
+    <div class="team-row">
+      <div class="card chairman">
+        <img src="images/sachin.png" alt="Event Chairman">
+        <div class="card-content">
+          <h4>Sachin J</h4>
+          <p>Event Chairman</p>
+          <p>Treasurer</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: Secretaries (Left and Right) -->
+    <div class="team-row">
+      <div class="card secretary">
+        <img src="images/sk.jpeg" alt="Secretary">
+        <div class="card-content">
+          <h4>Shanthosh Kumar</h4>
+          <p>Secretary</p>
+        </div>
+      </div>
+      
+      <div class="card secretary">
+        <img src="images/ar.png" alt="Secretary">
+        <div class="card-content">
+          <h4>Akshatha Rupa B</h4>
+          <p>Secretary</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 4: Coordinators (Top 2) -->
+    <div class="team-row">
+      <div class="card coord">
+        <img src="images/kawin.png" alt="Coordinator">
+        <div class="card-content">
+          <h4>Kawin PG</h4>
+          <p>Event Coordinator</p>
+        </div>
+      </div>
+
+      <div class="card coord">
+        <img src="images/DB.png" alt="Coordinator">
+        <div class="card-content">
+          <h4>Dhivyaabharathi S</h4>
+          <p>Event Coordinator</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 5: Coordinators (Bottom 4) -->
+    <div class="team-row">
+      <div class="card coord">
+        <img src="images/Shuriya.png" alt="Coordinator">
+        <div class="card-content">
+          <h4>Shuriya T</h4>
+          <p>Event Coordinator</p>
+        </div>
+      </div>
+
+      <div class="card coord">
+        <img src="images/nandhini.png" alt="Coordinator">
+        <div class="card-content">
+          <h4>Nandhini V</h4>
+          <p>Event Coordinator</p>
+        </div>
+      </div>
+
+      <div class="card coord">
+        <img src="images/ilakkia.png" alt="Coordinator">
+        <div class="card-content">
+          <h4>Ilakkia T</h4>
+          <p>Event Coordinator</p>
+        </div>
+      </div>
+
+      <div class="card coord">
+        <img src="images/sangeeth.png" alt="Coordinator">
+        <div class="card-content">
+          <h4>Sangeeth Manoj Kumar R</h4>
+          <p>Event Coordinator</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Contact Section -->
+<section id="contact">
+  <div class="contact-container">
+    <div class="contact-header">
+      <h2>CONTACT US</h2>
+      <p>Get in Touch with Team Lumora</p>
+    </div>
+
+    <div class="contact-content">
+      <!-- Contact Information Grid -->
+      <div class="contact-info-grid">
+        <!-- Email (Top Left) -->
+        <div class="info-item">
+          <h3>EMAIL</h3>
+          <p>
+            <a href="mailto:thecitfilmclub@gmail.com">thecitfilmclub@gmail.com</a>
+          </p>
+        </div>
+
+        <!-- Phone (Top Right) -->
+        <div class="info-item"> 
+          <h3>PHONE</h3>
+          <p>+91 82209 97164</p>
+          <p>+91 94458 49106</p>
+        </div>
+
+        <!-- Location (Bottom Left) -->
+        <div class="info-item">
+          <h3>LOCATION</h3>
+          <p>Coimbatore Institute of Technology</p>
+          <p>Coimbatore, Tamil Nadu</p>
+          <p>India</p>
+        </div>
+
+        <!-- Follow Us (Bottom Right) -->
+        <div class="info-item">
+          <h3>FOLLOW US</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/cit_film_club?igsh=NDZwM2hqczZ3ZHUx&utm_source=qr" target="_blank" title="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/@CITFilmClub" target="_blank" title="YouTube">
+              <i class="bi bi-youtube"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  © 2026 ENIGMA | Film Club of CIT <br>
+  An Echo of Cinema 
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
+<script>
+  // Mobile Menu Toggle - Fullscreen Overlay
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('navMenu');
+  
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    // Prevent body scroll when menu is open
+    if (navMenu.classList.contains('active')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  });
+  
+  // Close menu when clicking a link
+  document.querySelectorAll('.nav-center a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Vanta.js Background
+  VANTA.NET({
+    el: "#vanta-bg",
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200.00,
+    minWidth: 200.00,
+    scale: 1.00,
+    scaleMobile: 1.00,
+    backgroundColor: 0x0a0014,
+    color: 0xd4af37,
+    points: 12.0,
+    maxDistance: 22.0,
+    spacing: 16.0
+  });
+
+  // Scroll Progress Bar
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.querySelector('.scroll-progress').style.width = scrolled + '%';
+  });
+
+  // Intersection Observer for Animations
+  const observerOptions = {
+    threshold: 0.2,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  // Observe elements
+  document.querySelectorAll('.about-text, .about-card, .streaming-list li, .info-item').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Create floating particles
+  function createParticle() {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = Math.random() * window.innerWidth + 'px';
+    particle.style.bottom = '0px';
+    particle.style.animationDelay = Math.random() * 2 + 's';
+    document.body.appendChild(particle);
+
+    setTimeout(() => {
+      particle.remove();
+    }, 3000);
+  }
+
+  setInterval(createParticle, 300);
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
