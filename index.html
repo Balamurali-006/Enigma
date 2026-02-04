@@ -40,6 +40,7 @@
     .nav-left img {
       height: 50px;
       width: auto;
+      object-fit: contain;
     }
 
     .nav-center {
@@ -104,6 +105,55 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
     }
+
+    /* Hero Section Button Styles */
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .btn-gold {
+      padding: 15px 40px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.4));
+      border: 2px solid #d4af37;
+      color: #d4af37;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+    }
+
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #d4af37, #f2d06b);
+      color: #0a0014;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5);
+    }
+
+    .btn-register {
+      padding: 15px 40px;
+      background: linear-gradient(135deg, #d4af37, #f2d06b);
+      color: #0a0014;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 16px;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+      border: 2px solid transparent;
+    }
+
+    .btn-register:hover {
+      background: linear-gradient(135deg, #f2d06b, #d4af37);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 35px rgba(212, 175, 55, 0.6);
+      color: #0a0014;
+    }
     
     /* Hamburger Menu Styles */
     .hamburger {
@@ -154,8 +204,16 @@
         display: flex;
       }
 
+      .nav-left {
+        flex-shrink: 0;
+        gap: 12px;
+      }
+
       .nav-left img {
-        height: 40px;
+        height: 45px;
+        min-height: 45px;
+        width: auto;
+        flex-shrink: 0;
       }
 
       /* Hide desktop nav elements */
@@ -262,6 +320,15 @@
         font-size: 18px;
         padding: 15px 40px !important;
       }
+
+      .nav-left img {
+        height: 42px;
+        min-height: 42px;
+      }
+
+      .enigma-navbar {
+        padding: 10px 4%;
+      }
     }
 
     /* Team Lumora Section Responsive Styles */
@@ -346,10 +413,18 @@
         font-size: 1rem !important;
       }
 
-      /* Navigation logos */
-      .nav-left img {
-        max-width: 40px !important;
-        height: auto;
+      .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+      }
+
+      .btn-gold,
+      .btn-register {
+        width: 100%;
+        max-width: 280px;
+        padding: 14px 30px;
+        font-size: 15px;
       }
 
       /* About Section */
@@ -426,9 +501,11 @@
         font-size: 2.5rem !important;
       }
       
-      .btn-gold {
-        padding: 10px 20px !important;
+      .btn-gold,
+      .btn-register {
+        padding: 12px 25px !important;
         font-size: 14px !important;
+        max-width: 250px;
       }
 
       .category-grid {
@@ -517,10 +594,10 @@
     <li><a href="#sponsors">Sponsors</a></li>
     <li><a href="#contact">Contact Us</a></li>
     <li><a href="rules.html">Rules</a></li>
-    <li class="mobile-register"><a href="https://docs.google.com/forms/d/e/1FAIpQLSffypKHcbHbS6v_FxaK2EBy7DSNkFqNKUZWKnbL5avTNBp3tg/viewform?usp=dialog">Register Now →</a></li>
+    <li class="mobile-register"><a href="rules.html">Register Now →</a></li>
   </ul>
   <div class="nav-right">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSffypKHcbHbS6v_FxaK2EBy7DSNkFqNKUZWKnbL5avTNBp3tg/viewform?usp=dialog" class="register-btn">Register Now →</a>
+    <a href="rules.html" class="register-btn">Register Now →</a>
   </div>
 </nav>
 
@@ -535,7 +612,10 @@
     <h3># TAKE-III</h3>
     <p class="mt-3">An Echo of Cinema</p>
     <p class="mt-4">Where stories rise, visions compete, and filmmakers step closer to the silver screen.</p>
-    <a href="#about-enigma" class="btn btn-gold mt-4">Explore Festival</a>
+    <div class="hero-buttons">
+      <a href="#about-enigma" class="btn btn-gold mt-4">Explore Festival</a>
+      <a href="rules.html" class="btn btn-register mt-4">Register Now →</a>
+    </div>
   </div>
 </div>
 

@@ -44,6 +44,7 @@
     .nav-left img {
       height: 50px;
       width: auto;
+      object-fit: contain;
     }
 
     .nav-center {
@@ -159,8 +160,16 @@
         display: flex;
       }
 
+      .nav-left {
+        flex-shrink: 0;
+        gap: 12px;
+      }
+
       .nav-left img {
-        height: 40px;
+        height: 45px;
+        min-height: 45px;
+        width: auto;
+        flex-shrink: 0;
       }
 
       /* Hide desktop nav elements */
@@ -261,6 +270,15 @@
       .mobile-register a {
         font-size: 18px;
         padding: 15px 40px !important;
+      }
+
+      .nav-left img {
+        height: 42px;
+        min-height: 42px;
+      }
+
+      .enigma-navbar {
+        padding: 10px 4%;
       }
     }
 
