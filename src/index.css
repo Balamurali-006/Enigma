@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* rest of your CSS below */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #1a0b2e;
+  color: #f5e9ff;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #1a0a1f;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d4af37, #f1d77a);
+  border-radius: 5px;
+}
+
+/* Film perforation pattern */
+.film-perforation {
+  width: 12px;
+  height: 250px;
+  background: repeating-linear-gradient(
+    0deg,
+    #d4af37 0px,
+    #d4af37 4px,
+    transparent 4px,
+    transparent 12px
+  );
+  border: 2px solid #d4af37;
+  border-radius: 3px;
+}
+
+/* Clapper stripes */
+.clapper-stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    #1a1a1a,
+    #1a1a1a 20px,
+    #f5f5f5 20px,
+    #f5f5f5 40px
+  );
+}
+
+/* Film strip loading animation */
+.film-strip-loading {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(212, 175, 55, 0.1) 0px,
+    rgba(212, 175, 55, 0.1) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  border-top: 2px solid rgba(212, 175, 55, 0.3);
+  border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+  animation: film-roll 2s linear infinite;
+  background-position: 0 0;
+}
+
+@keyframes film-roll {
+  0% { background-position: 0 0; }
+  100% { background-position: 20px 0; }
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background: linear-gradient(90deg, #d4af37, #f1d77a, #d4af37);
+  z-index: 9999;
+  transition: width 0.1s ease;
+}
+
+/* Vanta background */
+#vanta-bg {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Award shine animation */
+@keyframes shineMove {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(200%) rotate(25deg); }
+}
+
+.award-shine-anim {
+  animation: shineMove 6s linear infinite;
+}
+
+/* Film scroll */
+@keyframes filmScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.film-track-anim {
+  animation: filmScroll 40s linear infinite;
+}
+
+.film-track-anim:hover {
+  animation-play-state: paused;
+}
+
+/* Loading screen hide class */
+#loading-screen.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Particle float animation */
+@keyframes floatParticle {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% {
+    transform: translateY(-100vh) translateX(50px) scale(1);
+    opacity: 0;
+  }
+}
+
+.particle {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  background: #d4af37;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  animation: floatParticle 3s ease-in-out infinite;
+}
+
+/* Seat occupied */
+.seat-occupied {
+  background: linear-gradient(135deg, #d4af37, #c49f2f) !important;
+  border-color: #f1d77a !important;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.6) !important;
+}
+
+/* Section background radial effects */
+.section-radial-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top left, rgba(125,76,255,0.1), transparent 50%),
+              radial-gradient(circle at bottom right, rgba(212,175,55,0.1), transparent 50%);
+  pointer-events: none;
+}
+
+/* Nav underline hover effect */
+.nav-link-hover {
+  position: relative;
+}
+.nav-link-hover::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #d4af37;
+  transition: width 0.3s;
+}
+.nav-link-hover:hover::after {
+  width: 100%;
+}
+
+/* Light rays for loading */
+.light-rays {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  height: 80%;
+  background: radial-gradient(ellipse at bottom, 
+    rgba(212, 175, 55, 0.3) 0%,
+    rgba(212, 175, 55, 0.15) 25%,
+    rgba(125, 76, 255, 0.1) 50%,
+    transparent 70%);
+  animation: pulse-light 3s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes pulse-light {
+  0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+}
+
+/* Spotlight loading glow */
+.loading-spotlight {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 600px;
+  background: radial-gradient(ellipse at bottom,
+    rgba(255, 255, 200, 0.4) 0%,
+    rgba(212, 175, 55, 0.2) 30%,
+    transparent 60%);
+  animation: spotlight-glow 2s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes spotlight-glow {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* Trophy reveal */
+@keyframes trophy-reveal {
+  0% {
+    clip-path: inset(100% 0 0 0);
+    transform: translateY(50px) scale(0.8);
+    opacity: 0;
+  }
+  50% { opacity: 1; }
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.trophy-image {
+  animation: trophy-reveal 3s ease-out forwards;
+  transform-origin: bottom center;
+  filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.8));
+}
+
+/* Title glow */
+@keyframes title-glow {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(212,175,55,0.5)); }
+  50% { filter: drop-shadow(0 0 40px rgba(212,175,55,0.9)); }
+}
+
+.festival-name {
+  animation: title-glow 2s ease-in-out infinite;
+}
+
+/* Bebas font application */
+.font-bebas {
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+/* About card slide-in animation trigger */
+.about-card-visible {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+/* Info item visible */
+.info-item-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Rule category animation */
+.rule-cat-1 { animation-delay: 0.1s; }
+.rule-cat-2 { animation-delay: 0.2s; }
+.rule-cat-3 { animation-delay: 0.3s; }
+.rule-cat-4 { animation-delay: 0.4s; }
+.rule-cat-5 { animation-delay: 0.5s; }
+.rule-cat-6 { animation-delay: 0.6s; }
+
+/* Streaming grid bg */
+.streaming-grid-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    repeating-linear-gradient(0deg, rgba(220, 20, 20, 0.03) 0px, transparent 2px, transparent 40px, rgba(220, 20, 20, 0.03) 42px),
+    repeating-linear-gradient(90deg, rgba(212,175,55,0.03) 0px, transparent 2px, transparent 40px, rgba(212,175,55,0.03) 42px);
+  animation: gridMove 20s linear infinite;
+  z-index: 0;
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(40px, 40px); }
+}
+
+/* Social links */
+.social-links {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+.social-links a {
+  color: #d4af37;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+.social-links a:hover {
+  color: #f1d77a;
+  transform: scale(1.2);
+}
+
+/* Hamburger active state */
+.hamburger-active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-7px, 7px);
+  background-color: #fff !important;
+}
+.hamburger-active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger-active span:nth-child(3) {
+  transform: rotate(45deg) translate(-7px, -7px);
+  background-color: #fff !important;
+}
+
+/* Shared section title used by multiple components */
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  color: #d4af37;
+  letter-spacing: 5px;
+  text-align: center;
+  margin-bottom: 60px;
+  font-size: 3rem;
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  display: block;
+}
+
+/* About card animation */
+.about-card-visible {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+/* Touch tap highlight for all interactive elements */
+@media (max-width: 768px) {
+  body { overflow-x: hidden; }
+  a, button, .team-card, .award-card, .feature-card { -webkit-tap-highlight-color: rgba(212,175,55,0.3); }
+}
+
+/* Particles */
+.particle {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #d4af37;
+  pointer-events: none;
+  z-index: 0;
+  animation: particleFloat 3s linear forwards;
+}
+@keyframes particleFloat {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-100vh) scale(0); opacity: 0; }
+}
