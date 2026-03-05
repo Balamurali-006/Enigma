@@ -36,7 +36,7 @@ export default function Navbar() {
     { label: 'About', id: 'about-enigma' },
     { label: 'Dignitaries', id: 'dignitaries' },
     { label: 'Team Lumora', id: 'about-us' },
-    { label: 'Prizes', id: 'awards' },
+    { label: 'Prizes', id: 'prizes' },
     { label: 'Sponsors', id: 'sponsors' },
     { label: 'Contact Us', id: 'contact' },
     { label: 'Rules', to: '/rules' },

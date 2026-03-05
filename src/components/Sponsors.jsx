@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Sponsors() {
+export default function Sponsors() {
   const sponsorList = [
     { name: 'Trophy Sponsor', logo: '/images/logo1.png' },
     { name: 'Promotion Partner', logo: '/images/logo2.png' },

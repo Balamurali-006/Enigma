@@ -1,4 +1,4 @@
-export function PrizePool() {
+export default function PrizePool() {
   const prizeSplit = [
     { rank: 'Winner', amount: '₹14,000', icon: '🥇' },
     { rank: 'Runner Up', amount: '₹10,000', icon: '🥈' },
