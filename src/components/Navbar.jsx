@@ -82,8 +82,8 @@ export default function Navbar() {
         .nav-right { z-index: 1002; }
         .register-btn {
           padding: 10px 22px;
-          background: linear-gradient(135deg, #d4af37 0%, #f2d06b 100%);
-          color: #0a0014 !important; text-decoration: none; border-radius: 4px;
+          background: linear-gradient(135deg, #000000 0%, #f2d06b 100%);
+          color: #d4af37 !important; text-decoration: none; border-radius: 4px;
           font-weight: 700; font-size: 13px; transition: all 0.3s;
           letter-spacing: 1px; box-shadow: 0 4px 15px rgba(212,175,55,0.2);
         }

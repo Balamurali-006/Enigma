@@ -398,3 +398,49 @@ body {
   0% { transform: translateY(0) scale(1); opacity: 1; }
   100% { transform: translateY(-100vh) scale(0); opacity: 0; }
 }
+
+/* Responsive Global Adjustments */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2.2rem !important;
+    letter-spacing: 3px !important;
+    margin-bottom: 40px !important;
+  }
+  
+  /* Adjusting common container paddings */
+  section {
+    padding: 60px 15px !important;
+  }
+
+  /* Grid Fixes for mobile */
+  .about-content-wrapper, 
+  .contact-content,
+  .poster-grid {
+    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* Team cards adjustment */
+  .team-row {
+    gap: 20px !important;
+  }
+  .team-card {
+    width: 100% !important;
+    max-width: 300px;
+  }
+}
+
+/* Fix for very small screens */
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 3rem !important;
+    letter-spacing: 5px !important;
+  }
+  
+  .btn-gold, .btn-register {
+    width: 100%;
+    padding: 12px 20px !important;
+  }
+}

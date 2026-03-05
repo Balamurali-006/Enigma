@@ -13,16 +13,12 @@ export default function Hero() {
           mouseControls: true,
           touchControls: true,
           gyroControls: false,
-
           minHeight: 200,
           minWidth: 200,
-
           scale: 1,
           scaleMobile: 1.1,
-
           backgroundColor: 0x0a0014,
           color: 0xd4af37,
-
           points: 14,
           maxDistance: 24,
           spacing: 16,
@@ -34,12 +30,10 @@ export default function Hero() {
       loadVanta()
     } else {
       const ts = document.createElement('script')
-      ts.src =
-        'https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js'
+      ts.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js'
       ts.onload = () => {
         const vs = document.createElement('script')
-        vs.src =
-          'https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js'
+        vs.src = 'https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js'
         vs.onload = loadVanta
         document.body.appendChild(vs)
       }
@@ -62,6 +56,17 @@ export default function Hero() {
   return (
     <>
       <style>{`
+        /* Load Rumble Brave Font - Update the path to your actual font file */
+        @font-face {
+          font-family: 'Rumble Brave';
+          src: url('/fonts/RumbleBrave.woff2') format('woff2'),
+               url('/fonts/RumbleBrave.woff') format('woff'),
+               url('/fonts/RumbleBrave.ttf') format('truetype');
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+        }
+
         #vanta-bg {
           height: 100vh;
           width: 100%;
@@ -99,25 +104,28 @@ export default function Hero() {
         }
 
         .hero-content h1 {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 6rem;
-          letter-spacing: 12px;
+          font-family: 'Rumble Brave', serif; /* Changed to Rumble Brave */
+          font-size: 7.5rem; /* Increased size slightly as display fonts often feel smaller */
+          letter-spacing: 4px; /* Rumble Brave usually looks better with tighter spacing than Bebas */
           background: linear-gradient(135deg, #d4af37, #f1d77a, #d4af37);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
-          margin-bottom: 10px;
+          margin-bottom: 5px;
           animation: glowText 2s ease-in-out infinite alternate;
+          text-transform: uppercase;
         }
 
         .hero-content h3 {
-          font-family: 'Bebas Neue', sans-serif;
-          letter-spacing: 6px;
+          font-family: 'Rumble Brave', serif; /* Changed to Rumble Brave */
+          letter-spacing: 4px;
           color: #f1d77a;
-          font-size: 1.8rem;
+          font-size: 2.2rem;
+          margin-top: 0;
         }
 
         .hero-content p {
-          margin-top: 12px;
+          font-family: 'Poppins', sans-serif;
+          margin-top: 15px;
           font-size: 1.1rem;
           line-height: 1.8;
           color: #f0e6ff;
@@ -155,52 +163,29 @@ export default function Hero() {
           display: inline-block;
         }
 
-        /* ---------------- MOBILE FIX ---------------- */
-
         @media (max-width: 768px) {
-
           .hero-overlay {
-            background: rgba(0, 0, 0, 0.75); /* Stronger dark layer */
+            background: rgba(0, 0, 0, 0.75);
           }
-
           .hero-content {
-            background: rgba(0, 0, 0, 0.55); /* Dark glass box */
+            background: rgba(0, 0, 0, 0.55);
             backdrop-filter: blur(8px);
             border-radius: 20px;
             padding: 30px 20px;
           }
-
           .hero-content h1 {
-            font-size: 3rem !important;
-            letter-spacing: 6px !important;
-            text-shadow: 0 0 15px rgba(0,0,0,0.8);
+            font-size: 3.5rem !important;
+            letter-spacing: 2px !important;
           }
-
           .hero-content h3 {
-            font-size: 1.2rem !important;
-            text-shadow: 0 0 10px rgba(0,0,0,0.8);
+            font-size: 1.4rem !important;
           }
-
           .hero-content p {
             font-size: 1rem;
-            color: #ffffff; /* pure white for clarity */
-            text-shadow: 0 0 8px rgba(0,0,0,0.9);
           }
-
-          .hero-btns {
-            gap: 15px;
-          }
-
-          .btn-gold,
-          .btn-register {
+          .btn-gold, .btn-register {
             width: 100%;
             max-width: 280px;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .hero-content h1 {
-            font-size: 2.3rem !important;
           }
         }
       `}</style>
