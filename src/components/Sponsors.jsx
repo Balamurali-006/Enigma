@@ -3,9 +3,10 @@ import React from 'react';
 export default function Sponsors() {
   const sponsorList = [
     { name: 'Trophy Sponsor', logo: '/images/logo1.png' },
-    { name: 'Promotion Partner', logo: '/images/logo2.png' },
-    { name: 'Food Sponsor', logo: '/images/logo3.png' },
+    { name: 'Sound System', logo: '/images/logo6.png' },
     { name: 'Media Partner', logo: '/images/logo4.png' },
+    { name: 'Food Sponsor', logo: '/images/logo3.png' },
+    { name: 'Promotion Partner', logo: '/images/logo2.png' },
     { name: 'Marketing Partner', logo: '/images/logo5.png' },
   ];
 
