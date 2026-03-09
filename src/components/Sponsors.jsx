@@ -8,148 +8,115 @@ export default function Sponsors() {
     { name: 'Food Sponsor', logo: '/images/logo3.png' },
     { name: 'Promotion Partner', logo: '/images/logo2.png' },
     { name: 'Marketing Partner', logo: '/images/logo5.png' },
+    { name: 'SSS Media Production', logo: '/images/logo7.png' },
   ];
 
   return (
     <section id="sponsors">
       <style>{`
         #sponsors {
-          padding: 100px 20px;
-          background: radial-gradient(circle at center, #1a0b2e 0%, #0a0014 100%);
-          position: relative;
+          padding: 80px 20px;
+          background: radial-gradient(circle at center, #1a0b2e 0%, #05000a 100%);
+          color: #ffffff;
+          font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         .sponsor-container {
-          max-width: 1200px;
+          max-width: 1100px;
           margin: 0 auto;
+        }
+
+        .section-title {
+          font-family: 'Bebas Neue', sans-serif;
+          font-size: clamp(2.5rem, 5vw, 3.5rem);
           text-align: center;
+          letter-spacing: 3px;
+          margin-bottom: 50px;
+          color: #d4af37; /* Premium Gold color */
         }
 
-        .sponsor-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 30px;
-          margin-top: 50px;
-          justify-items: center;
+        /* FLEXBOX CENTER ALIGNMENT */
+        /* This handles the 7th item by centering it on the last row */
+        .sponsor-flex-wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center; 
+          gap: 25px;
         }
 
-        /* Premium Card Design */
         .sponsor-card {
-          width: 100%;
-          max-width: 320px;
-          aspect-ratio: 16 / 10;
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(212, 175, 55, 0.05));
-          border: 1px solid rgba(212, 175, 55, 0.15);
-          border-radius: 20px;
-          backdrop-filter: blur(12px);
+          flex: 0 1 250px; /* Base width for each card */
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(212, 175, 55, 0.3);
+          border-radius: 12px;
+          padding: 25px 15px;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 25px;
-          transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
-          position: relative;
-          overflow: hidden;
-          cursor: pointer;
+          min-height: 180px;
         }
 
-        /* Hover Glow & Reflection */
-        .sponsor-card::after {
-          content: '';
-          position: absolute;
-          top: -50%;
-          left: -50%;
-          width: 200%;
-          height: 200%;
-          background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-          opacity: 0;
-          transition: 0.5s;
-        }
-
-        .sponsor-card:hover {
-          transform: translateY(-12px);
-          border-color: #d4af37;
-          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 25px rgba(212, 175, 55, 0.15);
-          background: rgba(212, 175, 55, 0.08);
-        }
-
-        .sponsor-card:hover::after {
-          opacity: 1;
-        }
-
-        /* Logo Scaling */
-        .sponsor-logo-wrap {
-          width: 85%;
-          height: 60%;
+        /* Logo Container: Ensuring all logos have the same workspace */
+        .logo-container {
+          width: 100%;
+          height: 90px;
           display: flex;
           align-items: center;
           justify-content: center;
-          z-index: 2;
+          margin-bottom: 15px;
         }
 
-        .sponsor-logo-wrap img {
-          max-width: 100%;
+        .logo-container img {
+          max-width: 85%;
           max-height: 100%;
           object-fit: contain;
-          filter: drop-shadow(0 0 12px rgba(0,0,0,0.4));
-          transition: transform 0.4s ease;
+          /* Removed B&W filters - showing original colors */
         }
 
-        .sponsor-card:hover img {
-          transform: scale(1.1);
-          filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
-        }
-
-        /* Premium Text Styling */
-        .sponsor-name {
-          font-family: 'Bebas Neue', sans-serif;
-          color: rgba(255, 255, 255, 0.85);
-          font-size: 1.4rem;
-          letter-spacing: 3px;
-          margin-top: 15px;
-          z-index: 2;
-          transition: all 0.3s ease;
+        .sponsor-label {
+          font-size: 0.85rem;
+          font-weight: 600;
           text-transform: uppercase;
+          letter-spacing: 1.5px;
+          color: #ffffff;
+          text-align: center;
+          margin: 0;
+          opacity: 0.9;
         }
 
-        .sponsor-card:hover .sponsor-name {
-          color: #d4af37;
-          letter-spacing: 5px;
-          text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-        }
-
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
-          .sponsor-grid {
-            grid-template-columns: 1fr 1fr;
+          .sponsor-flex-wrapper {
             gap: 15px;
           }
           .sponsor-card {
-            max-width: 100%;
-            padding: 15px;
+            flex: 0 1 calc(48% - 10px); /* 2 items per row */
+            min-height: 150px;
+            padding: 15px 10px;
           }
-          .sponsor-name {
-            font-size: 1.1rem;
-            letter-spacing: 2px;
+          .logo-container {
+            height: 70px;
+          }
+          .sponsor-label {
+            font-size: 0.75rem;
           }
         }
 
         @media (max-width: 480px) {
-          .sponsor-grid {
-            grid-template-columns: 1fr;
-          }
-          #sponsors {
-            padding: 60px 15px;
+          .sponsor-card {
+            flex: 0 1 100%; /* 1 item per row on very small screens */
           }
         }
       `}</style>
 
       <div className="sponsor-container">
-        <h2 className="section-title">OUR OFFICIAL PARTNERS</h2>
+        <h2 className="section-title">OFFICIAL PARTNERS</h2>
         
-        <div className="sponsor-grid">
+        <div className="sponsor-flex-wrapper">
           {sponsorList.map((sponsor, index) => (
             <div key={index} className="sponsor-card">
-              <div className="sponsor-logo-wrap">
+              <div className="logo-container">
                 <img 
                   src={sponsor.logo} 
                   alt={sponsor.name} 
@@ -158,7 +125,7 @@ export default function Sponsors() {
                   }}
                 />
               </div>
-              <span className="sponsor-name">{sponsor.name}</span>
+              <p className="sponsor-label">{sponsor.name}</p>
             </div>
           ))}
         </div>
