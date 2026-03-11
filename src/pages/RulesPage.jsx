@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import ScrollProgress from '../components/ScrollProgress'
 import Footer from '../components/Footer'
 
-// ... (rules array stays exactly the same as your original)
 const rules = [
   {
     num: '01',
@@ -124,6 +123,26 @@ const rules = [
       </>
     ),
   },
+  {
+    num: '07',
+    icon: '⚙️',
+    title: 'Quality Standards',
+    content: (
+      <>
+        <p className="font-semibold mb-2" style={{ color: '#f5e9ff' }}>Submission Integrity:</p>
+        <ul>
+          <li>Films with <strong>audio lag, distorted sound, or black screens</strong> will be rejected</li>
+          <li>Any files found to be corrupted or unplayable in standard media players will be disqualified</li>
+          <li>Poor resolution that hinders the viewing experience will lead to rejection</li>
+        </ul>
+        <div style={{ background: 'rgba(212,175,55,0.05)', borderLeft: '3px solid #d4af37', padding: '12px 15px', marginTop: '15px', borderRadius: 4 }}>
+          <p style={{ margin: 0, fontSize: '0.85rem', color: '#b89fc5', fontStyle: 'italic' }}>
+            The organizing committee is not responsible for technical issues arising from improper file submission or encoding errors.
+          </p>
+        </div>
+      </>
+    ),
+  },
 ]
 
 export default function RulesPage() {
@@ -148,12 +167,12 @@ export default function RulesPage() {
     sectionsRef.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }
 
-  const navLabels = ['Eligibility', 'Submission', 'Content', 'Technical', 'Disclaimer', 'Judging', 'Register']
+  // Added 'Quality' to labels
+  const navLabels = ['Eligibility', 'Submission', 'Content', 'Technical', 'Disclaimer', 'Judging', 'Quality', 'Register']
 
   return (
     <>
       <ScrollProgress />
-      
       <style>{`
         /* Global Mobile Fixes */
         html, body { overflow-x: hidden; width: 100%; }
@@ -189,7 +208,6 @@ export default function RulesPage() {
 
         @media (max-width: 480px) {
           .hero-title { font-size: 2rem !important; letter-spacing: 3px !important; }
-          .nav-logo { h-8 !important; }
           .section-padding { padding: 80px 15px 40px !important; }
         }
       `}</style>
@@ -297,8 +315,8 @@ export default function RulesPage() {
           </div>
         ))}
 
-        {/* Notes */}
-        <div ref={el => sectionsRef.current[6] = el} className="p-6 rounded-2xl border border-red-900/30 bg-red-950/10">
+        {/* Notes (Updated Ref Index to 7) */}
+        <div ref={el => sectionsRef.current[7] = el} className="p-6 rounded-2xl border border-red-900/30 bg-red-950/10">
           <h3 style={{ fontFamily: 'Bebas Neue, sans-serif', color: '#d4af37', fontSize: '1.4rem', marginBottom: 10 }}>Important Notes</h3>
           <ul className="rule-content text-sm text-[#e0d0e8] space-y-2 opacity-80">
             <li>The committee reserves the right to update rules.</li>
